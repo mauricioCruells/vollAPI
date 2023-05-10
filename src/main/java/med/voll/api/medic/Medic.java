@@ -21,6 +21,15 @@ import med.voll.api.address.Address;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medic {
+
+    public Medic(CreateMedicDto createMedicDto) {
+        this.name = createMedicDto.name();
+        this.email = createMedicDto.email();
+        this.description = createMedicDto.description();
+        this.specialty = createMedicDto.specialty();
+        this.address = new Address(createMedicDto.address());
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
