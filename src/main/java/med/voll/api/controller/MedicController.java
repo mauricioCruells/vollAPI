@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import med.voll.api.medic.CreateMedicDto;
 import med.voll.api.medic.Medic;
 import med.voll.api.medic.MedicRepository;
@@ -18,9 +19,8 @@ public class MedicController {
     private MedicRepository medicRepository;
 
     @PostMapping
-    public void createOneMedic(@RequestBody CreateMedicDto medicInfo) {
+    public void createOneMedic(@RequestBody @Valid CreateMedicDto medicInfo) {
         Medic medic = new Medic(medicInfo);
-        // System.out.print(medic);
         medicRepository.save(medic);
     }
 }

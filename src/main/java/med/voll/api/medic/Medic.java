@@ -1,7 +1,5 @@
 package med.voll.api.medic;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,11 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import med.voll.api.address.Address;
 
 @Table(name = "medics")
 @Entity(name = "Medic")
 @Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -48,13 +48,4 @@ public class Medic {
     @Embedded()
     Address address;
 
-    @Override
-    public String toString() {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.writeValueAsString(this);
-        } catch (Exception e) {
-            return super.toString();
-        }
-    }
 }
