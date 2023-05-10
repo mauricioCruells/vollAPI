@@ -20,6 +20,7 @@ public class MedicController {
     @PostMapping
     public void createOneMedic(@RequestBody CreateMedicDto medicInfo) {
         Medic medic = new Medic(medicInfo);
+        // System.out.print(medic);
         medicRepository.save(medic);
     }
 }

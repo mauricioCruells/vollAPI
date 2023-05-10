@@ -1,5 +1,7 @@
 package med.voll.api.medic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,4 +47,14 @@ public class Medic {
 
     @Embedded()
     Address address;
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            return super.toString();
+        }
+    }
 }
