@@ -10,6 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
+
+    public Address(AddressDto addressDto) {
+        this.street = addressDto.street();
+        this.city = addressDto.city();
+        this.state = addressDto.state();
+        this.houseNumber = addressDto.houseNumber();
+        this.extraInfo = addressDto.extraInfo();
+    }
+
     private String street;
     private String city;
     private String state;
