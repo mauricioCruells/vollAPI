@@ -24,14 +24,6 @@ import med.voll.api.address.Address;
 @EqualsAndHashCode(of = "id")
 public class Medic {
 
-    public Medic(CreateMedicDto createMedicDto) {
-        this.name = createMedicDto.name();
-        this.email = createMedicDto.email();
-        this.description = createMedicDto.description();
-        this.specialty = createMedicDto.specialty();
-        this.address = new Address(createMedicDto.address());
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,4 +40,25 @@ public class Medic {
     @Embedded()
     Address address;
 
+    public Medic(CreateMedicDto createMedicDto) {
+        this.name = createMedicDto.name();
+        this.email = createMedicDto.email();
+        this.description = createMedicDto.description();
+        this.specialty = createMedicDto.specialty();
+        this.address = new Address(createMedicDto.address());
+    }
+
+    public void updateMedic(UpdateMedicDto updateMedicDto) {
+        if (updateMedicDto.name() != null) {
+            this.name = updateMedicDto.name();
+        }
+
+        if (updateMedicDto.description() != null) {
+            this.description = updateMedicDto.description();
+        }
+
+        if (updateMedicDto.address() != null) {
+            this.address = address.updateAddress(updateMedicDto.address());
+        }
+    }
 }
