@@ -48,7 +48,7 @@ public class Medic {
         this.address = new Address(createMedicDto.address());
     }
 
-    public void updateMedic(UpdateMedicDto updateMedicDto) {
+    public Medic updateMedic(UpdateMedicDto updateMedicDto) {
         if (updateMedicDto.name() != null) {
             this.name = updateMedicDto.name();
         }
@@ -60,5 +60,7 @@ public class Medic {
         if (updateMedicDto.address() != null) {
             this.address = address.updateAddress(updateMedicDto.address());
         }
+
+        return this;
     }
 }
