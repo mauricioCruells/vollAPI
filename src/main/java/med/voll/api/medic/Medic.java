@@ -24,52 +24,51 @@ import med.voll.api.address.Address;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medic {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  private String name;
 
-    private String name;
+  private String email;
 
-    private String email;
+  private String description;
 
-    private String description;
+  private Boolean active;
 
-    private Boolean active;
+  @Enumerated(EnumType.STRING)
+  private Specialty specialty;
 
-    @Enumerated(EnumType.STRING)
-    private Specialty specialty;
+  @Embedded
+  Address address;
 
-    @Embedded()
-    Address address;
+  public Medic(CreateMedicDto createMedicDto) {
+    this.name = createMedicDto.name();
+    this.email = createMedicDto.email();
+    this.description = createMedicDto.description();
+    this.specialty = createMedicDto.specialty();
+    this.address = new Address(createMedicDto.address());
+  }
 
-    public Medic(CreateMedicDto createMedicDto) {
-        this.name = createMedicDto.name();
-        this.email = createMedicDto.email();
-        this.description = createMedicDto.description();
-        this.specialty = createMedicDto.specialty();
-        this.address = new Address(createMedicDto.address());
+  public Medic updateMedic(UpdateMedicDto updateMedicDto) {
+    if (updateMedicDto.name() != null) {
+      this.name = updateMedicDto.name();
     }
 
-    public Medic updateMedic(UpdateMedicDto updateMedicDto) {
-        if (updateMedicDto.name() != null) {
-            this.name = updateMedicDto.name();
-        }
-
-        if (updateMedicDto.description() != null) {
-            this.description = updateMedicDto.description();
-        }
-
-        if (updateMedicDto.address() != null) {
-            this.address = address.updateAddress(updateMedicDto.address());
-        }
-
-        return this;
+    if (updateMedicDto.description() != null) {
+      this.description = updateMedicDto.description();
     }
 
-    public void deactivate(@Valid DeactivateMedicDto deactivateMedicDto) {
-        if (deactivateMedicDto.active() != null) {
-            this.active = deactivateMedicDto.active();
-        }
+    if (updateMedicDto.address() != null) {
+      this.address = address.updateAddress(updateMedicDto.address());
     }
+
+    return this;
+  }
+
+  public void deactivate(@Valid DeactivateMedicDto deactivateMedicDto) {
+    if (deactivateMedicDto.active() != null) {
+      this.active = deactivateMedicDto.active();
+    }
+  }
 }

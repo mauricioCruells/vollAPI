@@ -22,24 +22,23 @@ import med.voll.api.address.Address;
 @EqualsAndHashCode(of = "id")
 public class Patient {
 
-    public Patient(CreatePatientDto createPatientDto) {
-        this.name = createPatientDto.name();
-        this.email = createPatientDto.email();
-        this.description = createPatientDto.description();
-        this.address = new Address(createPatientDto.address());
-    }
+  public Patient(CreatePatientDto createPatientDto) {
+    this.name = createPatientDto.name();
+    this.email = createPatientDto.email();
+    this.description = createPatientDto.description();
+    this.address = new Address(createPatientDto.address());
+  }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String email;
+  private String email;
 
-    private String description;
+  private String description;
 
-    @Embedded()
-    Address address;
-
+  @Embedded
+  Address address;
 }
