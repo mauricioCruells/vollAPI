@@ -3,12 +3,12 @@ package med.voll.api.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import java.net.URI;
-import med.voll.api.medic.CreateMedicDto;
-import med.voll.api.medic.DeactivateMedicDto;
-import med.voll.api.medic.Medic;
-import med.voll.api.medic.MedicRepository;
-import med.voll.api.medic.PaginatedMedicsDoc;
-import med.voll.api.medic.UpdateMedicDto;
+import med.voll.api.domain.medic.CreateMedicDto;
+import med.voll.api.domain.medic.DeactivateMedicDto;
+import med.voll.api.domain.medic.Medic;
+import med.voll.api.domain.medic.MedicRepository;
+import med.voll.api.domain.medic.PaginatedMedicsDoc;
+import med.voll.api.domain.medic.UpdateMedicDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +27,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("api/v1/medics")
 public class MedicController {
+
   @Autowired
   private MedicRepository medicRepository;
 
@@ -87,7 +88,9 @@ public class MedicController {
     @RequestBody @Valid DeactivateMedicDto deactivateMedicDto
   ) {
     Medic medic = medicRepository.getReferenceById(id);
+
     medic.deactivate(deactivateMedicDto);
+
     return ResponseEntity.noContent().build();
   }
 }

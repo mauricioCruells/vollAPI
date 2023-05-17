@@ -1,4 +1,4 @@
-package med.voll.api.medic;
+package med.voll.api.domain.medic;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import med.voll.api.address.Address;
+import med.voll.api.domain.address.Address;
 
 @Table(name = "medics")
 @Entity(name = "Medic")
@@ -24,6 +24,7 @@ import med.voll.api.address.Address;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medic {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

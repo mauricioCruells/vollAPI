@@ -1,4 +1,4 @@
-package med.voll.api.patient;
+package med.voll.api.domain.patient;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import med.voll.api.address.Address;
+import med.voll.api.domain.address.Address;
 
 @Table(name = "patients")
 @Entity(name = "Patient")
