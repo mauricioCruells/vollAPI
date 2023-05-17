@@ -1,0 +1,1 @@
+ALTER TABLE medics ADD active boolean DEFAULT true;

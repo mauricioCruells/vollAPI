@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.medic.CreateMedicDto;
+import med.voll.api.medic.DeactivateMedicDto;
 import med.voll.api.medic.Medic;
 import med.voll.api.medic.MedicRepository;
 import med.voll.api.medic.PaginatedMedicsDoc;
@@ -48,8 +49,8 @@ public class MedicController {
 
     @DeleteMapping("{id}")
     @Transactional
-    public void deleteOneMedic(@PathVariable long id) {
+    public void deactivateOneMedic(@PathVariable long id, @RequestBody @Valid DeactivateMedicDto deactivateMedicDto) {
         Medic medic = medicRepository.getReferenceById(id);
-        medicRepository.delete(medic);
+        medic.deactivate(deactivateMedicDto);
     }
 }

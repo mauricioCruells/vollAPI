@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,6 +34,8 @@ public class Medic {
     private String email;
 
     private String description;
+
+    private Boolean active;
 
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
@@ -62,5 +65,11 @@ public class Medic {
         }
 
         return this;
+    }
+
+    public void deactivate(@Valid DeactivateMedicDto deactivateMedicDto) {
+        if (deactivateMedicDto.active() != null) {
+            this.active = deactivateMedicDto.active();
+        }
     }
 }
