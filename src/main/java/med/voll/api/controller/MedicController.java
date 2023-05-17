@@ -2,7 +2,6 @@ package med.voll.api.controller;
 
 import java.net.URI;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,8 +47,8 @@ public class MedicController {
     }
 
     @GetMapping
-    public Page<PaginatedMedicsDoc> getMedicsPaginated(@PageableDefault(size = 4) Pageable pageable) {
-        return medicRepository.findAll(pageable).map(PaginatedMedicsDoc::new);
+    public ResponseEntity<Page<PaginatedMedicsDoc>> getMedicsPaginated(@PageableDefault(size = 4) Pageable pageable) {
+        return ResponseEntity.ok(medicRepository.findAll(pageable).map(PaginatedMedicsDoc::new));
     }
 
     @GetMapping("{id}")
